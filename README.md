@@ -19,6 +19,6 @@ The last step is to load the homework assignement. Copy and past the following
 URL on the **Open
 from file** options and press `Open`:
 
-<https://github.com/maltezfaria/SIM203/main/SIM203_tp1.jl> 
+<https://github.com/maltezfaria/SIM203/blob/main/SIM203_tp1.jl> 
 
 That should load the notebook and start running some code.
