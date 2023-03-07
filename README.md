@@ -1,7 +1,7 @@
-# ANN203 (2022)
+# ANN203 (2023)
 
 This repo contains the homeworks for the
-[`ANN203`](https://synapses.ensta-paris.fr/catalogue/2021-2022/ue/7679/ann203-methodes-numeriques-matricielles-avancees-analyse-et-experimentation)
+[`ANN203`](https://synapses.ensta-paris.fr/catalogue/2022-2023/ue/7679/ann203-methodes-numeriques-matricielles-avancees-analyse-et-experimentation)
 course. 
 ## Getting started
  
@@ -18,7 +18,7 @@ You should see something like this on your web browser:
 
 ![GitHub Logo](/pluto_home_page.png)
 
-The last step is to load the homework assignment. Copy and past the following
+The last step is to load the homework assignment. Copy and paste the following
 URL on the **Open from file** options and press `Open`:
 
 <https://github.com/maltezfaria/ANN203/blob/main/ANN203_tp0.jl> 
@@ -44,13 +44,13 @@ browser), and in the form of a `Pluto` notebook.
 
 [`Pluto`](https://github.com/fonsp/Pluto.jl) provides a notebook-like
 environment for combining `Julia` with pretty text that can easily be rendered
-on a website, and you can think of it a web-based *workflow* for developing code
+on a website, and you can think of it as a web-based *workflow* for developing code
 (similar to e.g. *Jupyter* notebooks if you have heard of those). While in
 general I don't recommend using `Pluto` for coding anything long or complex,
 most of the code you will write in this class is simple enough that using
 `Pluto` as a *web-based*
 [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) may be
-enough. My suggestion is to give it a try to see if it fits you.
+a viable option. My suggestion is to give it a try to see if it fits you.
 
 Should you find yourself hating `Pluto.jl` (and missing `matlab`), I suggest you
 try `vscode` with its [julia
