@@ -5,7 +5,9 @@ This repo contains the homeworks for the
 course. 
 ## Getting started
  
- * Install [Julia](https://julialang.org/downloads/)
+ * Install [Julia]((https://julialang.org/downloads/). I suggest using
+   [Juliaup](https://github.com/JuliaLang/juliaup) for an easier version
+   control.
  * Install [Pluto](https://github.com/fonsp/Pluto.jl)
  * Open a terminal and enter the *Julia REPL* by typing `julia`
  * Enter the following lines to open a browser with *Pluto.jl*
@@ -44,17 +46,17 @@ browser), and in the form of a `Pluto` notebook.
 
 [`Pluto`](https://github.com/fonsp/Pluto.jl) provides a notebook-like
 environment for combining `Julia` with pretty text that can easily be rendered
-on a website, and you can think of it as a web-based *workflow* for developing code
-(similar to e.g. *Jupyter* notebooks if you have heard of those). While in
+on a website, and you can think of it as a web-based *workflow* for developing
+code (similar to e.g. *Jupyter* notebooks if you have heard of those). While in
 general I don't recommend using `Pluto` for coding anything long or complex,
 most of the code you will write in this class is simple enough that using
 `Pluto` as a *web-based*
-[IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) may be
-a viable option. My suggestion is to give it a try to see if it fits you.
+[IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) may be a
+viable option. My suggestion is to give it a try to see if it fits you.
 
 Should you find yourself hating `Pluto.jl` (and missing `matlab`), I suggest you
-try `vscode` with its [julia
+try [Visual Studio Code](https://code.visualstudio.com) with its [julia
 extension](https://code.visualstudio.com/docs/languages/julia) to have an
 *out-of-the-box* experience as similar to `matlab` as possible. Keep in mind
-that I still expect you to submit your code as `Pluto` notebook, but you can
-always just copy-and-past the code to `Pluto` after you get it to work. 
+that I still expect you to submit your code as a `Pluto` notebook, but you can
+always just copy-and-past the code to `Pluto` after you get it to work.

@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.18.2
+# v0.19.22
 
 using Markdown
 using InteractiveUtils
@@ -31,6 +31,7 @@ This *mock homework* is intended to give you a stress-free introduction on how t
 - Your code will be implemented in [Julia](https://docs.julialang.org/en/v1/), which is a dynamically typed programming language with a focus on scientific computing. You can think of it as open-source substitute for `matlab` if you want. 
 - The page you are viewing was created using [Pluto.jl](https://github.com/fonsp/Pluto.jl), which is package that allows you to edit text and code in a web browser. For the homeworks, I will give you a `julia` notebook that you can open with `Pluto.jl`, and you will submit your completed version to me. This file itself is an example of what your homeworks will look like. 
 - Most of the homework questions are of practical nature; that is, I will give you guidelines and you are expected to **write code** which implements a given algorithm. I will provide you with some basic tests that your code should pass, but you may want to write your own tests as you go along. Also, *please comment your code* so that I can understand the reasoning behind what you wrote!
+- You can press the *eye-like buttom* on the top left of a cell to display/hide the code used to generate the cell.
 - Some questions require a written explanation, and you should create a cell with your answer. You can use `latex` syntax as your normally would by e.g. enclosing your text between the dollar sign `$`. Check some of the cells on this notebook for examples. 
 - While I expect you to submit your homework in the form of a `Pluto` notebook, you may find it useful to use a normal `IDE` such as `vscode` for implementing the algorithms. Once they work, you can then simply *copy and paste* them into the notebooks. 
 
@@ -277,8 +278,9 @@ PlutoUI = "~0.7.37"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.7.2"
+julia_version = "1.8.5"
 manifest_format = "2.0"
+project_hash = "358e081f1ca9ad7b5af04116a0ed4e244ddcc080"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -294,6 +296,7 @@ version = "3.3.3"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
+version = "1.1.1"
 
 [[deps.Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -308,7 +311,7 @@ uuid = "6e34b625-4abd-537c-b88f-471c36dfa7a0"
 version = "1.0.8+0"
 
 [[deps.Cairo_jll]]
-deps = ["Artifacts", "Bzip2_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
+deps = ["Artifacts", "Bzip2_jll", "CompilerSupportLibraries_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
 git-tree-sha1 = "4b859a208b2397a7a623a03449e4636bdb17bcf2"
 uuid = "83423d85-b0ee-5818-9007-b63ccbeb887a"
 version = "1.16.1+1"
@@ -352,6 +355,7 @@ version = "3.42.0"
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
+version = "1.0.1+0"
 
 [[deps.Contour]]
 deps = ["StaticArrays"]
@@ -394,8 +398,9 @@ uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 version = "0.8.6"
 
 [[deps.Downloads]]
-deps = ["ArgTools", "LibCURL", "NetworkOptions"]
+deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+version = "1.6.0"
 
 [[deps.EarCut_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -420,6 +425,9 @@ deps = ["Artifacts", "Bzip2_jll", "FreeType2_jll", "FriBidi_jll", "JLLWrappers",
 git-tree-sha1 = "d8a578692e3077ac998b50c0217dfd67f21d1e5f"
 uuid = "b22a6f82-2f65-5046-a5b2-351ab43fb4e5"
 version = "4.4.0+0"
+
+[[deps.FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[deps.FixedPointNumbers]]
 deps = ["Statistics"]
@@ -607,10 +615,12 @@ version = "0.15.13"
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
 uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
+version = "0.6.3"
 
 [[deps.LibCURL_jll]]
 deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
+version = "7.84.0+0"
 
 [[deps.LibGit2]]
 deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
@@ -619,6 +629,7 @@ uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 [[deps.LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
+version = "1.10.2+0"
 
 [[deps.Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -649,9 +660,9 @@ version = "1.42.0+0"
 
 [[deps.Libiconv_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "42b62845d70a619f063a7da093d995ec8e15e778"
+git-tree-sha1 = "c7cb1f5d892775ba13767a87c7ada0b980ea0a71"
 uuid = "94ce4f54-9a6c-5748-9c1c-f9c7231a4531"
-version = "1.16.1+1"
+version = "1.16.1+2"
 
 [[deps.Libmount_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -703,6 +714,7 @@ version = "1.0.3"
 [[deps.MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
+version = "2.28.0+0"
 
 [[deps.Measures]]
 git-tree-sha1 = "e498ddeee6f9fdb4551ce855a46f54dbd900245f"
@@ -720,6 +732,7 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
+version = "2022.2.1"
 
 [[deps.NaNMath]]
 git-tree-sha1 = "737a5957f387b17e74d4ad2f440eb330b39a62c5"
@@ -728,6 +741,7 @@ version = "1.0.0"
 
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+version = "1.2.0"
 
 [[deps.Ogg_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -738,6 +752,7 @@ version = "1.3.5+1"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
+version = "0.3.20+0"
 
 [[deps.OpenSSL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -777,6 +792,7 @@ version = "0.40.1+0"
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+version = "1.8.0"
 
 [[deps.PlotThemes]]
 deps = ["PlotUtils", "Requires", "Statistics"]
@@ -814,9 +830,9 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[deps.Qt5Base_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Fontconfig_jll", "Glib_jll", "JLLWrappers", "Libdl", "Libglvnd_jll", "OpenSSL_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libxcb_jll", "Xorg_xcb_util_image_jll", "Xorg_xcb_util_keysyms_jll", "Xorg_xcb_util_renderutil_jll", "Xorg_xcb_util_wm_jll", "Zlib_jll", "xkbcommon_jll"]
-git-tree-sha1 = "ad368663a5e20dbb8d6dc2fddeefe4dae0781ae8"
+git-tree-sha1 = "0c03844e2231e12fda4d0086fd7cbe4098ee8dc5"
 uuid = "ea2cea3b-5b76-57ae-a6ef-0a8af62496e1"
-version = "5.15.3+0"
+version = "5.15.3+2"
 
 [[deps.REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
@@ -856,6 +872,7 @@ version = "1.3.0"
 
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+version = "0.7.0"
 
 [[deps.Scratch]]
 deps = ["Dates"]
@@ -920,6 +937,7 @@ version = "0.6.5"
 [[deps.TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+version = "1.0.0"
 
 [[deps.TableTraits]]
 deps = ["IteratorInterfaceExtensions"]
@@ -936,6 +954,7 @@ version = "1.7.0"
 [[deps.Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
+version = "1.10.1"
 
 [[deps.Test]]
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
@@ -1117,6 +1136,7 @@ version = "1.4.0+3"
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
+version = "1.2.12+3"
 
 [[deps.Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1133,6 +1153,7 @@ version = "0.15.1+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl", "OpenBLAS_jll"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
+version = "5.1.1+0"
 
 [[deps.libfdk_aac_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1155,10 +1176,12 @@ version = "1.3.7+1"
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
+version = "1.48.0+0"
 
 [[deps.p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
+version = "17.4.0+0"
 
 [[deps.x264_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1181,7 +1204,7 @@ version = "0.9.1+5"
 
 # ╔═╡ Cell order:
 # ╠═2630d67f-46d9-490d-b4d8-f0e1ddada512
-# ╠═57160c99-cccc-4aca-99fd-df9356da76a1
+# ╟─57160c99-cccc-4aca-99fd-df9356da76a1
 # ╟─606540b0-9846-11eb-2a09-8112c5081854
 # ╟─28280ba3-789f-40ec-b731-cbc43334b839
 # ╟─6ea0197b-5af3-4116-b214-a27f28508c33
@@ -1194,8 +1217,8 @@ version = "0.9.1+5"
 # ╠═c0338af5-cd0c-426e-be91-e5cfc2f3f884
 # ╟─f8575199-66f0-4ba1-b53a-13b7f068967f
 # ╟─406313d1-bae1-4407-93f2-16e28d884742
-# ╠═177074b6-361d-4874-8416-cabc4ff2ed23
-# ╠═a83beac2-eafc-4d53-80a0-4de158f40dda
+# ╟─177074b6-361d-4874-8416-cabc4ff2ed23
+# ╟─a83beac2-eafc-4d53-80a0-4de158f40dda
 # ╟─fc33f786-917c-4a41-b660-0dfa564d6ddf
 # ╟─5bcb5bc2-7fc8-4864-8e91-3ae5fd410927
 # ╟─1f214e8b-33aa-453d-bc2b-ddf76ee86e32
@@ -1219,13 +1242,13 @@ version = "0.9.1+5"
 # ╠═030112a4-8ef5-4e6f-b550-b4c1a1676d4c
 # ╟─998ba42d-14ef-4bbb-a03f-828e8d4a7860
 # ╟─765ac30d-977e-4983-af6d-3cf608fd5f10
-# ╟─36dd3db7-762a-4a0e-a961-a98e3f19f0a3
+# ╠═36dd3db7-762a-4a0e-a961-a98e3f19f0a3
 # ╟─32072861-4599-4c7b-a7bf-1e448ee790c0
 # ╠═6a25f400-097a-4034-8642-212f61d019a7
 # ╟─ac203eef-9102-4188-983d-b4bb816b7ab2
 # ╟─254bfbc4-117b-4518-a188-c19a7c123035
 # ╟─363968d9-23c9-45e7-b47d-5d7e8ad5648f
-# ╟─c65c438b-d97f-4857-9897-20180cc53d25
+# ╠═c65c438b-d97f-4857-9897-20180cc53d25
 # ╟─78e2208d-f9f8-44f7-806f-4590db85fe1a
 # ╟─a7aa6fe4-3ee2-4dff-a792-4289d4fca83c
 # ╟─e25e883e-e0f9-4848-adfd-24f155ecf902
