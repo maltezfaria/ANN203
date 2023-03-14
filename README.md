@@ -5,7 +5,7 @@ This repo contains the homeworks for the
 course. 
 ## Getting started
  
- * Install [Julia]((https://julialang.org/downloads/). I suggest using
+ * Install [Julia](https://julialang.org/downloads/). I suggest using
    [Juliaup](https://github.com/JuliaLang/juliaup) for an easier version
    control.
  * Install [Pluto](https://github.com/fonsp/Pluto.jl)
