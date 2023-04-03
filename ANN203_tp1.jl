@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.18.2
+# v0.19.22
 
 using Markdown
 using InteractiveUtils
@@ -27,32 +27,32 @@ PlutoUI.TableOfContents(;depth=2)
 
 # ╔═╡ 28280ba3-789f-40ec-b731-cbc43334b839
 md"""!!! danger "Submission instructions"
-	**Due date:** April 15, 2022
-	
-	Send your completed notebook to **luiz.maltez-faria@inria.fr**
+	**Due date:** April 11, 2023
+
+	Send your completed notebook to **luiz.maltez-faria@inria.fr**. Please use $\texttt{[ANN203]:TP1}$ as the subject of the email.
 """
 
 # ╔═╡ 6ea0197b-5af3-4116-b214-a27f28508c33
 md"""## Introduction
-This homework is intended to give you a *hands-on* experience on coding some of the fundamental numerical linear algebra algorithms that we have covered in the lectures so far. You are encouraged to consult the course material available [here](https://perso.ensta-paris.fr/~mbonnet/aln.pdf). 
+This homework is intended to give you a *hands-on* experience on coding some of the fundamental numerical linear algebra algorithms that we have covered in the lectures so far. You are encouraged to consult the course material available [here](https://perso.ensta-paris.fr/~mbonnet/aln.pdf).
 
-Most of the questions are of practical nature; that is, I will give you guidelines and you are expected to **write code** which implements a given algorithm. I will also provide some basic tests that your code should pass, but you may want to write your own tests as you go along. Also, *please comment your code* so that I can understand the reasoning behind what you wrote! 
+Most of the questions are of practical nature; that is, I will give you guidelines and you are expected to **write code** which implements a given algorithm. I will also provide some basic tests that your code should pass, but you may want to write your own tests as you go along. Also, *please comment your code* so that I can understand the reasoning behind what you wrote!
 
-Some questions require a written explanation, and you should create a cell with your answer. Remember that you can use `latex` syntax as your normally would by e.g. enclosing your text between the dollar sign `$`. Check some of the cells on this notebook for examples. 
+Some questions require a written explanation, and you should create a cell with your answer. Remember that you can use `latex` syntax as your normally would by e.g. enclosing your text between the dollar sign `$`. Check some of the cells on this notebook for examples.
 
-Your code will be implemented in [Julia](https://docs.julialang.org/en/v1/), and the page you are viewing was created using [Pluto.jl](https://github.com/fonsp/Pluto.jl). Although you do not necessarily need to install/use Pluto.jl in your homework, doing so is highly recommended since it will allow you to navigate this notebook interactively (instead of viewing it as a static html page). [This video](https://www.youtube.com/embed/OOjKEgbt8AI) gives some basic instructions on how to install Julia and Pluto.jl (ignore the part at the end regarding the submission). If you run into a problem let me know. 
+Your code will be implemented in [Julia](https://docs.julialang.org/en/v1/), and the page you are viewing was created using [Pluto.jl](https://github.com/fonsp/Pluto.jl). [This video](https://www.youtube.com/embed/OOjKEgbt8AI) gives some basic instructions on how to install Julia and Pluto.jl (ignore the part at the end regarding the submission). If you run into a problem let me know.
 
 Once you are done installing *Julia* (and *Pluto.jl*), you should probably spend some time playing around with *Julia* if you have never used it before. Its syntax is very similar to *Matlab*, so you should be up and running in little time. Two important differences are:
 * Indexing arrays uses square brackets. That is, if `A` is `Matrix`, then use `A[i,j]` to index the `(i,j)` entry of `A` instead of `A(i,k)` as in *Matlab*.
 * *Julia* uses a *passing by reference* convention for arguments in a function, and arrays are not copied by default when using the `=` operator. This means e.g. that if `A` is a `Matrix`, then `B=A` does not create a new copy of `A` and the variable `B` references the same memory; in particular mutating `B` will modify `A`! If you want a copy, use instead `B=copy(A)`.
 
-Here is a [cheatsheet](https://cheatsheets.quantecon.org) summarizing some basic syntactic differences between *Julia*, *Matlab* and *Python*. Once you are comfortable with *Julia*, move on to the next section. 
+Here is a [cheatsheet](https://cheatsheets.quantecon.org) summarizing some basic syntactic differences between *Julia*, *Matlab* and *Python*. Once you are comfortable with *Julia*, move on to the next section.
 """
 
 # ╔═╡ 8c26975d-ec0c-423c-9644-daf031c0aabb
 md""" ## Part 1: QR factorization
 
-Throughout this section we will assume that $A \in \mathbb{C}^{m\times n}$ with $m \geq n$, and $\text{rank}(A) = n$ (i.e. $A$ has full rank). This is a simplyfying assumption which is not necessarily needed in many of the algorithms (such as QR). 
+Throughout this section we will assume that $A \in \mathbb{C}^{m\times n}$ with $m \geq n$, and $\text{rank}(A) = n$ (i.e. $A$ has full rank). This is a simplyfying assumption which is not necessarily needed in many of the algorithms (such as QR).
 
 The main goal of this section is to write a program that can solve the following least squares problem:
 ```math
@@ -71,7 +71,7 @@ where $I$ is the identity matrix and $u$ is a complex vector. The notation $(\cd
 
 # ╔═╡ 06ddb55b-e7a7-4ee8-91dd-171d5665df5e
 function householder_matrix(u)
-    return I 
+    return I
 end
 
 # ╔═╡ d48b5435-ce1d-4789-a33a-91f405439138
@@ -79,8 +79,8 @@ md"""If your implementation is correct, it should pass the tests I have provided
 
 # ╔═╡ 5a6887a8-e651-4e4b-96c6-d1d7058cd26d
 md"""
-Now, at each step of the *QR* factorization, we need to compute a Householder vectors $u$ given a vector $x$ so that 
-```math 
+Now, at each step of the *QR* factorization, we need to compute a Householder vector $u$ given a vector $x$ so that
+```math
 F(u)x = \textrm{sign}(x_1)||x||e_1
 ```
 where $x_1$ is the first entry of $x$ and $e_1$ is the cartesian basis vector. This is your second task:
@@ -96,13 +96,13 @@ end
 
 # ╔═╡ ef865aba-8f80-4f38-9560-feecdb9013a7
 md"""### *Naive* QR algorithm
-We can now code a version of the Householder QR factorization similar to [Algorithm 3.1](https://perso.ensta-paris.fr/~mbonnet/aln.pdf) on your notes. One difference will be that instead of simply reducing the matrix $A$ to an upper triangular form using orthogonal triangularization, we will actually form the matrix $Q$ in the process. Yes, that is inneficient, but we will do that anyways. 
+We can now code a version of the Householder QR factorization similar to [Algorithm 3.1](https://perso.ensta-paris.fr/~mbonnet/aln.pdf) on your notes. One difference will be that instead of simply reducing the matrix $A$ to an upper triangular form using orthogonal triangularization, we will actually form the matrix $Q$ in the process. Yes, that is inneficient, but we will do that anyways.
 
 Recall that the main idea is to gradually convert $A$ into an upper triangular matrix $R$ as follows:
 ```math
 \underbrace{F(u_n)F(u_{n-1}) \ldots F(u_2)F(u_1)}_{Q^*} A = R.
 ```
-Remember: the matrices $F(u_k)$ act only on the $k$ through $n$ columns of the matrix to its right. On your lectures notes that was achieved by some *zero padding* of the vectors $u_k$. Here we will only compute the non-zero part of these matrices. 
+Remember: the matrices $F(u_k)$ act only on the $k$ through $n$ columns of the matrix to its right. On your lectures notes that was achieved by some *zero padding* of the vectors $u_k$. Here we will only compute the non-zero part of these matrices.
 """
 
 # ╔═╡ 65523ce4-ebb8-4fb2-9869-61890e0b7e2d
@@ -111,9 +111,9 @@ function householder_qr(A)
 	R   = copy(A)
 	kmax = m>n ? n : m
 	# initialize Qt as m×m identity matrix with entries of same type as A
-    Qt  = diagm(0=>ones(eltype(A),m)) 
+    Qt  = diagm(0=>ones(eltype(A),m))
     for k in 1:kmax
-    	# complete me    
+    	# complete me
     end
     Q = adjoint(Qt)
     return Q,R
@@ -121,7 +121,7 @@ end
 
 # ╔═╡ 665919fd-592f-494a-9d17-adde3434a7e0
 md"""
-If you got this far you have succeeded in implementing a $QR$ factorization in *Julia*! 
+If you got this far you have succeeded in implementing a $QR$ factorization in *Julia*!
 """
 
 # ╔═╡ 7c40b5d3-8afd-4648-91ef-ec6235ec376e
@@ -129,8 +129,8 @@ md"""### A compact QR algorithm
 Forming the matrix $Q$ requires some extra computation (and extra memory), and having $Q$ explicitly formed is often not necessary. In what follows we will dive a little into a more efficient *compact* representation of the *QR* factorization. The idea is to use the upper triangular part of the input matrix $A$ to store $R$, and the lower triangular part (diagonal excluded) to store the Householder vectors $u_k$. We will normalize $u_k$ so that its first value is always one, meaning only $m-k$ values are needed to define it instead of $m-k+1$ values. This *trick* means $u_k$ will fit in the lower triangular part (diagonal excluded) of the $k$-th column of $A$, and therefore we should be able to perform our QR factorization using *only the memory* allocated in $A$. This will require some significant rewrite. In particular
 
 * The `householder_vector` function should normalize the vector so that the first entry is `1`.
-* No Householder matrices should ever be stored in memory. This means we need to write code to *apply* $H(u)$ to a matrix given the vector $u$ that defines it.  
-* Some care has to be taken regarding the order of the operations so that we do not overwrite memory that is still needed for other computations. 
+* No Householder matrices should ever be stored in memory. This means we need to write code to *apply* $H(u)$ to a matrix given the vector $u$ that defines it.
+* Some care has to be taken regarding the order of the operations so that we do not overwrite memory that is still needed for other computations.
 
 The function `householder_vector_normalized!(x)` shown below modifies `x[2:end]` to store the `2:end` entries of the Householder vector. Note that the first entry is not modified since it is (implicitly) one. This memory space will be reserved to the diagonal part of $R$.
 """
@@ -151,7 +151,7 @@ end
 
 # ╔═╡ 13c5b2d6-7f30-4afd-8a08-3dfe4f2db184
 md"""
-Since only the action of Householder matrices $H(u)$ on a matrix/vector is needed, it makes sense to avoid creating a dense matrix to store it. The `apply_hh_matrix` function below uses the special structure of $H(u)$ to efficiently computes $H(u)A$ where $u \in \mathbb{C}^m$ and $A \in \mathbb{C}^{m\times n}$: 
+Since only the action of Householder matrices $H(u)$ on a matrix/vector is needed, it makes sense to avoid creating a dense matrix to store it. The `apply_hh_matrix` function below uses the special structure of $H(u)$ to efficiently computes $H(u)A$ where $u \in \mathbb{C}^m$ and $A \in \mathbb{C}^{m\times n}$:
 """
 
 # ╔═╡ 355bd86a-a278-4ade-96a7-2a18e0c8f7db
@@ -179,7 +179,7 @@ md"It is your turn now to explain the code above:"
 
 # ╔═╡ b7dc76de-d6df-414e-bc76-fa9c5e2af727
 function apply_hh_matrix_normalized!(A,u)
-	# your code here. 
+	# your code here.
 	# A good starting point is the code from apply_hh_matrix!
 	return A
 end
@@ -203,8 +203,8 @@ let
 	m1 = @allocated householder_qr(A)
 	m2 = @allocated householder_qr_compact!(A)
 	m3 = @allocated qr!(A)
-	md"""You case you got this far, the table below will give you a rough idea of execution time of the *naive* and *compact* implementations of your algorithm for a matrix of $A \in \mathbb{C}^{m\times n}$ with m=$m and n = $n. We will also compare to the default `qr` algorithm provided by the `LinearAlgebra` package. The dynamically allocated memory is also shown. These numbers only make sense **if your algorithm is working**. 
-	
+	md"""You case you got this far, the table below will give you a rough idea of execution time of the *naive* and *compact* implementations of your algorithm for a matrix of $A \in \mathbb{C}^{m\times n}$ with m=$m and n = $n. We will also compare to the default `qr` algorithm provided by the `LinearAlgebra` package. The dynamically allocated memory is also shown. These numbers only make sense **if your algorithm is working**.
+
 Version | Time (s) | Memory (bytes)
 :------------ | :-------------: | :----------:
 naive   | $t1 | $m1
@@ -254,7 +254,7 @@ md"""
 In this third and last part we will focus on one of the many applications of least squares: polynomial fitting. Informally, the problem is to find a *good polynomial fit* to a set of data points. Mathematically, the problem can be formulated as follows:
 
 !!! note "Polynomial fitting"
-	Given a set of points $x_1,\ldots,x_m$ and values $y_1,\ldots,y_m$, find a degree $n$ polynomial 
+	Given a set of points $x_1,\ldots,x_m$ and values $y_1,\ldots,y_m$, find a degree $n$ polynomial
 	```math
 	p_n(x) = c_0 + c_1 x + \ldots + c_{n-1} x^{n}
 	```
@@ -273,23 +273,9 @@ Your next question is to reduce the polynomial fitting problem to something you 
 function polynomial_fit(x,y,n)
 	# modify the code below so that `c` gives the coefficients of your polynomial
 	c  = ones(n+1)
-	# the line below will create a function to evalute pₙ given a vector of coefficients. Look up the documentation of `evalpoly` if you need, or feel free to replace the line below by your own if you prefer. 
+	# the line below will create a function to evalute pₙ given a vector of coefficients. Look up the documentation of `evalpoly` if you need, or feel free to replace the line below by your own if you prefer.
 	pₙ = (x) -> evalpoly(x,c)
 	return pₙ
-end
-
-# ╔═╡ 08b4735b-1c0f-4aaa-9ba5-17ee9e2caf14
-@bind n Slider(0:19,show_value=false)
-
-# ╔═╡ 0c7860c3-3248-41ed-98fb-63ff3cc97dba
-begin
-	f(x) = atan(15x)
-	x = range(-1,1,20)
-	y = [f(x) for x in x]
-	xtest = -1:0.01:1
-	p = polynomial_fit(x,y,n)
-	scatter(x,y,label="data")
-	plot!(xtest,p.(xtest),label="interpolant",legend=:topleft,title="order=$n",ylims=(-2,2))
 end
 
 # ╔═╡ 254bfbc4-117b-4518-a188-c19a7c123035
@@ -304,8 +290,8 @@ question(md"Complete the `householder_matrix` function below to compute the Hous
 
 # ╔═╡ 4720b6c3-d9bf-4a46-9d38-2cee67e35142
 let
-	text = md"""Complete the `householder_vector` function below to implement the  	  *Householder vector* $u$ given an input vector $x$. Check that the property 
-	```math 
+	text = md"""Complete the `householder_vector` function below to implement the  	  *Householder vector* $u$ given an input vector $x$. Check that the property
+	```math
 		F(u)x = \textrm{sign}(x_1)||x||e_1
 	```
 	is satisfied.
@@ -329,14 +315,14 @@ Complete the code below to perform a compact QR factorization in place.
 """,6)
 
 # ╔═╡ dbf408ba-bf6e-440c-8855-3f7b7f254d6e
-question(md"""Reformulate the least squares problem 
+question(md"""Reformulate the least squares problem
 ```math
 \begin{align}
 \underset{x \in \mathbb{R}^n}{\mathrm{argmin}}||Ax - b||_2
 \end{align}
 ```
 using the QR factorization of A, and complete the function `least_squares_qr` below to calculate $x$ given $A$ and $b$. Use the provided function `solve_uppertriangular(R,b)` below
-to find the solution of $Rx=b$, where $R$ is a (square) upper-triangular matrix, and your version of  `householder_qr` for the QR decomposition. 
+to find the solution of $Rx=b$, where $R$ is a (square) upper-triangular matrix, and your version of  `householder_qr` for the QR decomposition.
 	""",7)
 
 # ╔═╡ 6217aa0d-46e1-4dd6-a1e5-5eb2696757e4
@@ -362,7 +348,7 @@ answer(text=md"Write your answer here!
 
 # ╔═╡ 21f916fe-21b9-43c1-b9d1-a8e541d24e43
 answer(md"""
-Write your answer here!. 
+Write your answer here!.
 """)
 
 # ╔═╡ f31d5edd-722e-4c55-9ef3-190b4996fd29
@@ -405,6 +391,9 @@ note(md"The cell below will add the dependencies that you need for this notebook
 # ╔═╡ 92791a5f-02f8-461e-9bb1-4e1077f24be9
 note(md"""In *Julia*, functions whose name end with `!` typically mutate their arguments. This is merely a convention, but sticking to it is considered good practice. """)
 
+# ╔═╡ 788bb325-0b1e-4d22-b888-c84f210983f5
+note(md"The execution time displayed above may significantly change between runs; for more serious benchmarks, consider using the `BenchmarkTools` package.")
+
 # ╔═╡ 74097a18-b4fe-4ec8-b47c-b279fce28598
 note(md"""
 In case your `householder_qr` function does not work, you may use `LinearAlgebra.qr` for perfoming the $QR$ factorization. Check its documentation for more details on how to use it.
@@ -437,7 +426,7 @@ check_answer() do
 end
 
 # ╔═╡ 15410cfb-db47-48e0-a7e0-49a061aaaec5
-check_answer() do 
+check_answer() do
 	A    = rand(5,5) .- 0.5 # a random matrix for testing
 	a1   = A[:,1]
 	u1   = householder_vector(a1)
@@ -451,7 +440,7 @@ end
 
 
 # ╔═╡ 9fc30c4d-e5c2-4359-9bec-e93ca5876763
-check_answer() do 
+check_answer() do
 	@testset "Householder qr" begin
 		for (m,n) in [(10,5),(10,10)]
 			A   = rand(ComplexF64,m,n)
@@ -469,7 +458,7 @@ check_answer() do
 end
 
 # ╔═╡ e15fdd6e-ed3e-49bf-a3a7-7530cda0d479
-check_answer() do 
+check_answer() do
 	A    = rand(10,5)
 	x    = rand(10)
 	x[1] = 1
@@ -484,7 +473,7 @@ check_answer() do
 end
 
 # ╔═╡ 2e865221-74b1-4023-962c-77203686cf03
-check_answer() do 
+check_answer() do
 	A = rand(10,5)
 	Q,R = householder_qr(A)
 	householder_qr_compact!(A)
@@ -528,7 +517,7 @@ function show_tests(f)
 end
 
 # ╔═╡ 2f9ccd3c-14a1-486e-8b6c-707deda8b4bc
-show_tests() do 
+show_tests() do
 	x     = rand(ComplexF64,5) .- 0.5 # a random matrix for testing
 	v     = copy(x)
 	v     = householder_vector_normalized!(v)
@@ -544,7 +533,7 @@ show_tests() do
 end
 
 # ╔═╡ 297f8790-3973-462e-b14a-bff39f399e8e
-show_tests() do 
+show_tests() do
 	A = rand(10,5)
 	x = rand(10)
 	exact = (I - 2*x*x'/(x'*x))*A
@@ -557,7 +546,7 @@ show_tests() do
 end
 
 # ╔═╡ 9ad83c33-f843-4d63-b0f3-1a0401068c80
-show_tests() do 
+show_tests() do
 	try
 		@testset "Upper triangular solver" begin
 			A = rand(10,10)
@@ -571,6 +560,33 @@ show_tests() do
 		@warn "Exception encoutered"
 	end
 end
+
+# ╔═╡ 0c7860c3-3248-41ed-98fb-63ff3cc97dba
+let
+	nmax = 20
+	f(x) = atan(10x)
+	x = range(-1,1,20)
+	#x = [cos((2k-1)/2nmax*π) for k in 1:nmax]
+	y = [f(x) for x in x]
+	xtest = -1:0.01:1
+	p = polynomial_fit(x,y,n)
+	scatter(x,y,label="data")
+	fig1 = plot!(xtest,p.(xtest),label="interpolant",legend=:topleft,ylims=(-2,2))
+	er = abs.(f.(xtest)-p.(xtest))
+	@info "Maximum error $(maximum(er))"
+	fig2 = plot(xtest,er,label="error",yscale=:log10)
+	plot(fig1,fig2,title="order=$(n)")
+
+end
+
+# ╔═╡ 08b4735b-1c0f-4aaa-9ba5-17ee9e2caf14
+# ╠═╡ disabled = true
+#=╠═╡
+@bind n Slider(0:19,show_value=false)
+  ╠═╡ =#
+
+# ╔═╡ 2c11ac13-f2fd-4987-8e03-390453af665f
+@bind n Slider(0:19,show_value=false)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -589,8 +605,9 @@ PlutoUI = "~0.7.38"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.7.2"
+julia_version = "1.8.5"
 manifest_format = "2.0"
+project_hash = "3b735e3eda066ebe9c6e21e56048093f44eb1288"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -606,6 +623,7 @@ version = "3.3.3"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
+version = "1.1.1"
 
 [[deps.Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -620,7 +638,7 @@ uuid = "6e34b625-4abd-537c-b88f-471c36dfa7a0"
 version = "1.0.8+0"
 
 [[deps.Cairo_jll]]
-deps = ["Artifacts", "Bzip2_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
+deps = ["Artifacts", "Bzip2_jll", "CompilerSupportLibraries_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
 git-tree-sha1 = "4b859a208b2397a7a623a03449e4636bdb17bcf2"
 uuid = "83423d85-b0ee-5818-9007-b63ccbeb887a"
 version = "1.16.1+1"
@@ -664,6 +682,7 @@ version = "3.42.0"
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
+version = "1.0.1+0"
 
 [[deps.Contour]]
 deps = ["StaticArrays"]
@@ -706,8 +725,9 @@ uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 version = "0.8.6"
 
 [[deps.Downloads]]
-deps = ["ArgTools", "LibCURL", "NetworkOptions"]
+deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+version = "1.6.0"
 
 [[deps.EarCut_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -732,6 +752,9 @@ deps = ["Artifacts", "Bzip2_jll", "FreeType2_jll", "FriBidi_jll", "JLLWrappers",
 git-tree-sha1 = "d8a578692e3077ac998b50c0217dfd67f21d1e5f"
 uuid = "b22a6f82-2f65-5046-a5b2-351ab43fb4e5"
 version = "4.4.0+0"
+
+[[deps.FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[deps.FixedPointNumbers]]
 deps = ["Statistics"]
@@ -919,10 +942,12 @@ version = "0.15.14"
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
 uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
+version = "0.6.3"
 
 [[deps.LibCURL_jll]]
 deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
+version = "7.84.0+0"
 
 [[deps.LibGit2]]
 deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
@@ -931,6 +956,7 @@ uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 [[deps.LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
+version = "1.10.2+0"
 
 [[deps.Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -961,9 +987,9 @@ version = "1.42.0+0"
 
 [[deps.Libiconv_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "42b62845d70a619f063a7da093d995ec8e15e778"
+git-tree-sha1 = "c7cb1f5d892775ba13767a87c7ada0b980ea0a71"
 uuid = "94ce4f54-9a6c-5748-9c1c-f9c7231a4531"
-version = "1.16.1+1"
+version = "1.16.1+2"
 
 [[deps.Libmount_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1015,6 +1041,7 @@ version = "1.0.3"
 [[deps.MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
+version = "2.28.0+0"
 
 [[deps.Measures]]
 git-tree-sha1 = "e498ddeee6f9fdb4551ce855a46f54dbd900245f"
@@ -1032,6 +1059,7 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
+version = "2022.2.1"
 
 [[deps.NaNMath]]
 git-tree-sha1 = "737a5957f387b17e74d4ad2f440eb330b39a62c5"
@@ -1040,6 +1068,7 @@ version = "1.0.0"
 
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+version = "1.2.0"
 
 [[deps.Ogg_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1050,6 +1079,7 @@ version = "1.3.5+1"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
+version = "0.3.20+0"
 
 [[deps.OpenSSL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1089,6 +1119,7 @@ version = "0.40.1+0"
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+version = "1.8.0"
 
 [[deps.PlotThemes]]
 deps = ["PlotUtils", "Statistics"]
@@ -1126,9 +1157,9 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[deps.Qt5Base_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Fontconfig_jll", "Glib_jll", "JLLWrappers", "Libdl", "Libglvnd_jll", "OpenSSL_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libxcb_jll", "Xorg_xcb_util_image_jll", "Xorg_xcb_util_keysyms_jll", "Xorg_xcb_util_renderutil_jll", "Xorg_xcb_util_wm_jll", "Zlib_jll", "xkbcommon_jll"]
-git-tree-sha1 = "ad368663a5e20dbb8d6dc2fddeefe4dae0781ae8"
+git-tree-sha1 = "0c03844e2231e12fda4d0086fd7cbe4098ee8dc5"
 uuid = "ea2cea3b-5b76-57ae-a6ef-0a8af62496e1"
-version = "5.15.3+0"
+version = "5.15.3+2"
 
 [[deps.REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
@@ -1168,6 +1199,7 @@ version = "1.3.0"
 
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+version = "0.7.0"
 
 [[deps.Scratch]]
 deps = ["Dates"]
@@ -1232,6 +1264,7 @@ version = "0.6.5"
 [[deps.TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+version = "1.0.0"
 
 [[deps.TableTraits]]
 deps = ["IteratorInterfaceExtensions"]
@@ -1248,6 +1281,7 @@ version = "1.7.0"
 [[deps.Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
+version = "1.10.1"
 
 [[deps.Test]]
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
@@ -1429,6 +1463,7 @@ version = "1.4.0+3"
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
+version = "1.2.12+3"
 
 [[deps.Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1445,6 +1480,7 @@ version = "0.15.1+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl", "OpenBLAS_jll"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
+version = "5.1.1+0"
 
 [[deps.libfdk_aac_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1467,10 +1503,12 @@ version = "1.3.7+1"
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
+version = "1.48.0+0"
 
 [[deps.p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
+version = "17.4.0+0"
 
 [[deps.x264_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1534,6 +1572,7 @@ version = "0.9.1+5"
 # ╠═ae805230-574e-4818-bdbc-1dda19fa33b0
 # ╟─2e865221-74b1-4023-962c-77203686cf03
 # ╟─a0af5567-02c6-4c3a-a1f2-649c622d1319
+# ╟─788bb325-0b1e-4d22-b888-c84f210983f5
 # ╟─a1cfd851-c006-4506-be18-7571927fb5ef
 # ╟─f89404e4-9287-4014-bd2d-93f6833a1985
 # ╟─8efa2b75-f85a-4be9-85cd-6cccd193bded
@@ -1556,8 +1595,8 @@ version = "0.9.1+5"
 # ╟─a6d035a7-18f1-4a7a-96d9-6cf87157a407
 # ╟─5dcfbfd0-2065-4dec-bfce-d3a94c93b18f
 # ╟─13d002b4-1a7b-4dcf-a6b6-99901be30a2f
-# ╟─08b4735b-1c0f-4aaa-9ba5-17ee9e2caf14
-# ╟─0c7860c3-3248-41ed-98fb-63ff3cc97dba
+# ╠═08b4735b-1c0f-4aaa-9ba5-17ee9e2caf14
+# ╠═0c7860c3-3248-41ed-98fb-63ff3cc97dba
 # ╟─254bfbc4-117b-4518-a188-c19a7c123035
 # ╟─363968d9-23c9-45e7-b47d-5d7e8ad5648f
 # ╟─c65c438b-d97f-4857-9897-20180cc53d25
@@ -1568,5 +1607,6 @@ version = "0.9.1+5"
 # ╟─167a446c-24b7-414c-9bdf-bae7c90df2ab
 # ╟─7e94c5d7-ba40-4850-9602-18fe63381ee8
 # ╟─8b8a87c1-871d-4fab-bf1a-6b3d8bc9a0fd
+# ╠═2c11ac13-f2fd-4987-8e03-390453af665f
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
