@@ -22,12 +22,12 @@ You should see something like this on your web browser:
 
 ![GitHub Logo](/pluto_home_page.png)
 
-The last step is to load the homework assignment. Copy and paste the following
-URL on the **Open from file** options and press `Open`:
+The last step is to load the homework assignment. Either download the homework and enter the path to the downloaded file in *Pluto*, or copy and paste the following
+URL on the **Open a notebook** window and press `Open`:
 
 <https://github.com/maltezfaria/ANN203/blob/main/ANN203_tp0.jl> 
 
-That should load the notebook for the `TP0` and start running some code.
+That should load the notebook for the `TP0` in a *safe preview* mode. To execute the content of the notebook, you will need to give *Pluto* permission to run some code. 
 
 ## To `Julia` from `Matlab`
 
