@@ -1,16 +1,18 @@
-# ANN203 (2023)
+# ANN203 (2024)
 
-This repo contains the homeworks for the
-[`ANN203`](https://synapses.ensta-paris.fr/catalogue/2022-2023/ue/7679/ann203-methodes-numeriques-matricielles-avancees-analyse-et-experimentation)
-course. 
+This repo contains the homework for the
+[`ANN203`](https://synapses.ensta-paris.fr/catalogue/2023-2024/ue/7679/ann203-methodes-numeriques-matricielles-avancees-analyse-et-experimentation)
+course.
+
 ## Getting started
- 
- * Install [Julia](https://julialang.org/downloads/). I suggest using
+
+* Install [Julia](https://julialang.org/downloads/). I suggest using
    [Juliaup](https://github.com/JuliaLang/juliaup) for an easier version
    control.
- * Install [Pluto](https://github.com/fonsp/Pluto.jl)
- * Open a terminal and enter the *Julia REPL* by typing `julia`
- * Enter the following lines to open a browser with *Pluto.jl*
+* Install [Pluto](https://github.com/fonsp/Pluto.jl)
+* Open a terminal and enter the *Julia REPL* by typing `julia`
+* Enter the following lines to open a browser with *Pluto.jl*
+
  ```julia
 using Pluto
 Pluto.run()
@@ -36,13 +38,12 @@ love about `Matlab` (e.g. the *magical* backslash `\` operator). Here is a [list
 of noteworthy
 differences](https://docs.julialang.org/en/v1/manual/noteworthy-differences/)
 that may help you get started translating code.
- 
 
 ## Workflows and `Pluto.jl`
 
-As you will notice in your first assignment, the homeworks for this class are
+As you will notice in your first assignment, the homework for this class is
 available both in the form of a *static* HTML file (which you can open in any
-browser), and in the form of a `Pluto` notebook.
+browser) and in the form of a `Pluto` notebook.
 
 [`Pluto`](https://github.com/fonsp/Pluto.jl) provides a notebook-like
 environment for combining `Julia` with pretty text that can easily be rendered
@@ -59,4 +60,4 @@ try [Visual Studio Code](https://code.visualstudio.com) with its [julia
 extension](https://code.visualstudio.com/docs/languages/julia) to have an
 *out-of-the-box* experience as similar to `matlab` as possible. Keep in mind
 that I still expect you to submit your code as a `Pluto` notebook, but you can
-always just copy-and-past the code to `Pluto` after you get it to work.
+always just copy and paste the code to `Pluto` after you get it to work.
